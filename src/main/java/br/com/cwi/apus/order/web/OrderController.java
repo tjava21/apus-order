@@ -1,8 +1,9 @@
 package br.com.cwi.apus.order.web;
 
 
+import br.com.cwi.apus.order.external.apus.request.BasketRequest;
+import br.com.cwi.apus.order.mapper.OrderMapper;
 import br.com.cwi.apus.order.service.order.CreateOrderService;
-import br.com.cwi.apus.order.web.request.order.OrderRequest;
 import br.com.cwi.apus.order.web.response.order.OrderResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +18,11 @@ public class OrderController {
 
     private CreateOrderService createOrderService;
 
+    private OrderMapper orderMapper;
+
     @PostMapping
-    public OrderResponse returnId(@RequestBody OrderRequest request){
-        return new OrderResponse();
+    public OrderResponse execute(@RequestBody BasketRequest request){
+
+        return orderMapper.toOrderResponse(createOrderService.execute(request)) ;
     }
 }

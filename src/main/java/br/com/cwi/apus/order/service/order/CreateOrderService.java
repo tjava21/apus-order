@@ -2,34 +2,35 @@ package br.com.cwi.apus.order.service.order;
 
 
 import br.com.cwi.apus.order.domain.order.*;
+import br.com.cwi.apus.order.external.apus.request.BasketRequest;
 import br.com.cwi.apus.order.repository.OrderRepository;
 import br.com.cwi.apus.order.utils.DomainUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.stream.Collectors;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
 public class CreateOrderService {
 
     private OrderRepository repository;
-/*
+
     @Transactional
-    public Order execute(Basket basket) {
+    public Order execute(BasketRequest basket) {
 
         Order order = new Order();
         order.setCustomer(buildCustomer(basket));
         order.setPayment(buildPayment(basket));
         order.setShipping(buildShipping(basket));
-        order.setItems(buildItems(basket, order));
+     //   order.setItems(buildItems(basket, order));
 
         return repository.save(order);
     }
-/*
-    private List<OrderItem> buildItems(Basket basket, Order order) {
+
+    private List<OrderItem> buildItems(BasketRequest basket, Order order) {
         return basket.getItems().stream()
                 .map(b -> OrderItem.builder()
                         .productId(DomainUtils.toExternalId(b.getProduct().getId()))
@@ -41,8 +42,8 @@ public class CreateOrderService {
                         .build())
                 .collect(Collectors.toList());
     }
-/*
-    private Shipping buildShipping(Basket basket) {
+
+    private Shipping buildShipping(BasketRequest basket) {
         return Shipping.builder()
                 .total(basket.getTotalShipping())
                 .time(basket.getTime())
@@ -53,7 +54,7 @@ public class CreateOrderService {
                 .build();
     }
 
-    private Payment buildPayment(Basket basket) {
+    private Payment buildPayment(BasketRequest basket) {
         return Payment.builder()
                 .total(basket.getTotal())
                 .card(basket.getCard())
@@ -61,10 +62,10 @@ public class CreateOrderService {
                 .build();
     }
 
-    private Customer buildCustomer(Basket basket) {
+    private Customer buildCustomer(BasketRequest basket) {
         return Customer.builder()
                 .name(basket.getName())
                 .email(basket.getEmail())
                 .build();
-    }*/
+    }
 }
