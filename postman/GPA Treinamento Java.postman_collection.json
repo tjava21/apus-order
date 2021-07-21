@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "1bef4230-4e97-4ddf-8b7b-2403e02548b3",
+		"name": "GPA Treinamento Java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Apus",
+			"item": [
+				{
+					"name": "Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basket New",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/basket",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"basket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basket Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/basket/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basket Update Item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1\",\n    \"quantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/basket/2/item",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"2",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basket Update Identity",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Joao\",\n    \"email\": \"joao@apus.com.br\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/basket/2/identity",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"2",
+								"identity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basket Update Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"zip\": \"93415180\",\n    \"address\": \"Rua Joinvile, 35\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/basket/2/address",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"2",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basket Update Payment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"card\": \"0123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/basket/2/payment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"2",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basket Checkout",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"card\": \"0123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/basket/2/payment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"2",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "External",
+			"item": [
+				{
+					"name": "Cetus - Shipping",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"zipOrigin\": \"11111111\",\n    \"zipDestination\": \"93415180\",\n    \"volume\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/cetus/shipping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cetus",
+								"shipping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lyra - Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1111\",\n    \"total\": 8,\n    \"card\": \"1234 5678 9012\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/lyra/payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"lyra",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lyra - Payment Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1111\",\n    \"total\": 8,\n    \"card\": \"1234 5678 9012\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/lyra/payment/c97d88a4-2fac-4665-b6b1-5ae2959cef91/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"lyra",
+								"payment",
+								"c97d88a4-2fac-4665-b6b1-5ae2959cef91",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

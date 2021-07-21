@@ -1,0 +1,23 @@
+server:
+  servlet:
+    context-path: /api
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+app:
+  cetus:
+    url: ${CETUS_URL:https://apus-external.herokuapp.com/api/cetus/shipping}
+    zip: ${CETUS_ZIP:11111111}
+  lyra:
+    company: ${LYRA_COMPANY:2222}
+    url: ${LYRA_URL:https://apus-external.herokuapp.com/api/lyra/payment}

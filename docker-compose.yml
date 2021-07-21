@@ -1,0 +1,25 @@
+version: "3"
+services:
+  apusdb:
+    image: postgres
+    environment:
+      - POSTGRES_USER=apus
+      - POSTGRES_PASSWORD=apus
+      - POSTGRES_DB=apus
+    volumes:
+      - apusdb_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@apus.com.br
+      - PGADMIN_DEFAULT_PASSWORD=apus
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - 9001:80
+volumes:
+  apusdb_data:
+  pgadmin_data:

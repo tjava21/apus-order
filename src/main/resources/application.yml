@@ -1,0 +1,37 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /api
+spring:
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    protocol: smtp
+#    username: evertonz@gmail.com
+#    password: ${MY_PASSWORD}
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#          quitwait: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/apus
+    username: apus
+    password: apus
+  jpa:
+    hibernate:
+      ddl-auto: create
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+app:
+  cetus:
+    url: ${CETUS_URL:https://apus-external.herokuapp.com/api/cetus/shipping}
+    zip: ${CETUS_ZIP:11111111}
+  lyra:
+    company: ${LYRA_COMPANY:2222}
+    url: ${LYRA_URL:https://apus-external.herokuapp.com/api/lyra/payment}
