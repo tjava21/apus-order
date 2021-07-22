@@ -1,4 +1,4 @@
-package br.com.cwi.apus.order.web.response.order;
+package br.com.cwi.apus.order.web.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

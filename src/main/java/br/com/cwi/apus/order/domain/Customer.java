@@ -8,21 +8,19 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.math.BigDecimal;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @Entity
-public class Product {
+public class Customer {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private UUID id;
 
-    private String description;
-    private int quantity;
-    private int volume;
-    private BigDecimal price;
+    private String name;
+    private String email;
 }

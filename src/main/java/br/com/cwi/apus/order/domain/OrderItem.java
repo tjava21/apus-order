@@ -1,4 +1,4 @@
-package br.com.cwi.apus.order.domain.order;
+package br.com.cwi.apus.order.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -16,13 +17,19 @@ import java.util.UUID;
 @Builder
 @Data
 @Entity
-public class Payment {
+public class OrderItem {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    private String card;
-    private String externalId;
-    private BigDecimal total;
+    @ManyToOne
+    private Order order;
+
+    private String productId;
+    private String description;
+    private int quantity;
+    private int volume;
+    private BigDecimal price;
+
 }

@@ -1,19 +1,13 @@
-package br.com.cwi.apus.order.external.apus.request;
+package br.com.cwi.apus.order.web.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Data
-public class BasketRequest {
+public class CreateOrderRequest {
 
     private Long id;
     private BigDecimal totalItems;
@@ -32,5 +26,15 @@ public class BasketRequest {
     private String paymentId;
     private String shippingId;
 
-    private List<BasketItemRequest> items = new ArrayList<>();
+    private List<CreateOrderItemRequest> items = new ArrayList<>();
+
+    @Data
+    public static class CreateOrderItemRequest {
+
+        private Long id;
+        private int quantity;
+        private String description;
+        private int volume;
+        private BigDecimal price;
+    }
 }

@@ -1,7 +1,7 @@
 package br.com.cwi.apus.order.mapper;
 
-import br.com.cwi.apus.order.domain.order.Order;
-import br.com.cwi.apus.order.web.response.order.OrderResponse;
+import br.com.cwi.apus.order.domain.Order;
+import br.com.cwi.apus.order.web.response.OrderResponse;
 import org.springframework.stereotype.Component;
 
 @Component
