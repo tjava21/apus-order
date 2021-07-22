@@ -3,20 +3,20 @@ server:
   servlet:
     context-path: /api
 spring:
-#  mail:
-#    host: smtp.gmail.com
-#    port: 587
-#    protocol: smtp
-#    username: evertonz@gmail.com
-#    password: ${MY_PASSWORD}
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-#            required: true
-#          quitwait: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    username: ${MY_EMAIL}
+    password: ${MY_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          quitwait: false
   datasource:
     url: jdbc:postgresql://localhost:5432/apus
     username: apus

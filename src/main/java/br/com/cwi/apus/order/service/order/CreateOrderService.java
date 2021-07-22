@@ -6,6 +6,8 @@ import br.com.cwi.apus.order.external.apus.request.BasketRequest;
 import br.com.cwi.apus.order.repository.OrderRepository;
 import br.com.cwi.apus.order.utils.DomainUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +19,7 @@ import java.util.List;
 public class CreateOrderService {
 
     private OrderRepository repository;
+    private JavaMailSender mailSender;
 
     @Transactional
     public Order execute(BasketRequest basket) {
@@ -27,7 +30,10 @@ public class CreateOrderService {
         order.setShipping(buildShipping(basket));
      //   order.setItems(buildItems(basket, order));
 
-        return repository.save(order);
+        repository.save(order);
+        sendMail(order);
+
+        return order;
     }
 
     private List<OrderItem> buildItems(BasketRequest basket, Order order) {
@@ -67,5 +73,16 @@ public class CreateOrderService {
                 .name(basket.getName())
                 .email(basket.getEmail())
                 .build();
+    }
+
+    private void sendMail(Order order) {
+        String pedido = order.getId().toString();
+        SimpleMailMessage email = new SimpleMailMessage();
+
+        email.setTo(order.getCustomer().getEmail());
+        email.setSubject("Pedido " + pedido);
+        email.setText("Seu pedido " + pedido + " foi Criado com sucesso");
+
+        mailSender.send(email);
     }
 }
