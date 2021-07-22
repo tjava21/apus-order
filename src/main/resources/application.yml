@@ -2,21 +2,23 @@ server:
   port: 8082
   servlet:
     context-path: /api
+  error:
+    include-message: always
 spring:
-#  mail:
-#    host: smtp.gmail.com
-#    port: 587
-#    protocol: smtp
-#    username: evertonz@gmail.com
-#    password: ${MY_PASSWORD}
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-#            required: true
-#          quitwait: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    username: ${MAIL_EMAIL:tjava2021@gmail.com}
+    password: ${MAIL_PASSWORD:Tjava2021@2021}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          quitwait: false
   datasource:
     url: jdbc:postgresql://localhost:5432/apus
     username: apus
@@ -30,9 +32,8 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 app:
   lyra:
-    company: ${LYRA_COMPANY:2222}
     url: ${LYRA_URL:https://apus-external.herokuapp.com/api/lyra/payment}
   apus:
     url: ${APUS_URL:https://apus.herokuapp.com/api}
   job:
-    time: 1200000
+    time: ${JOB_TIME:1200000}

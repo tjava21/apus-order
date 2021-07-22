@@ -4,6 +4,7 @@ import br.com.cwi.apus.order.domain.*;
 import br.com.cwi.apus.order.mapper.OrderMapper;
 import br.com.cwi.apus.order.repository.OrderRepository;
 import br.com.cwi.apus.order.utils.DomainUtils;
+import br.com.cwi.apus.order.validator.CreateOrderValidator;
 import br.com.cwi.apus.order.web.request.CreateOrderRequest;
 import br.com.cwi.apus.order.web.response.OrderResponse;
 import lombok.AllArgsConstructor;
@@ -19,17 +20,25 @@ public class CreateOrderService {
 
     private OrderRepository repository;
     private OrderMapper orderMapper;
+    private OrderMailService orderMailService;
+    private CreateOrderValidator createOrderValidator;
 
     @Transactional
-    public OrderResponse execute(CreateOrderRequest basket) {
+    public OrderResponse execute(CreateOrderRequest request) {
+
+        createOrderValidator.valid(request);
 
         Order order = new Order();
-        order.setCustomer(buildCustomer(basket));
-        order.setPayment(buildPayment(basket));
-        order.setShipping(buildShipping(basket));
-        order.setItems(buildItems(basket, order));
+        order.setCustomer(buildCustomer(request));
+        order.setPayment(buildPayment(request));
+        order.setShipping(buildShipping(request));
+        order.setItems(buildItems(request, order));
 
-        return orderMapper.toOrderResponse(repository.save(order));
+        repository.save(order);
+
+        orderMailService.send(order.getId().toString(), order.getCustomer().getEmail());
+
+        return orderMapper.toOrderResponse(order);
     }
 
     private List<OrderItem> buildItems(CreateOrderRequest request, Order order) {
@@ -45,29 +54,29 @@ public class CreateOrderService {
                 .collect(Collectors.toList());
     }
 
-    private Shipping buildShipping(CreateOrderRequest basket) {
+    private Shipping buildShipping(CreateOrderRequest request) {
         return Shipping.builder()
-                .total(basket.getTotalShipping())
-                .time(basket.getTime())
-                .volume(basket.getVolume())
-                .zip(basket.getZip())
-                .address(basket.getAddress())
-                .externalId(basket.getShippingId())
+                .total(request.getTotalShipping())
+                .time(request.getTime())
+                .volume(request.getVolume())
+                .zip(request.getZip())
+                .address(request.getAddress())
+                .externalId(request.getShippingId())
                 .build();
     }
 
-    private Payment buildPayment(CreateOrderRequest basket) {
+    private Payment buildPayment(CreateOrderRequest request) {
         return Payment.builder()
-                .total(basket.getTotal())
-                .card(basket.getCard())
-                .externalId(basket.getPaymentId())
+                .total(request.getTotal())
+                .card(request.getCard())
+                .externalId(request.getPaymentId())
                 .build();
     }
 
-    private Customer buildCustomer(CreateOrderRequest basket) {
+    private Customer buildCustomer(CreateOrderRequest request) {
         return Customer.builder()
-                .name(basket.getName())
-                .email(basket.getEmail())
+                .name(request.getName())
+                .email(request.getEmail())
                 .build();
     }
 }

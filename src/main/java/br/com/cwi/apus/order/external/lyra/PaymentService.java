@@ -19,9 +19,6 @@ public class PaymentService {
     @Value("${app.lyra.url}")
     private String url;
 
-    @Value("${app.lyra.company}")
-    private String company;
-
     public PaymentStatusResponse getStatus(String id) {
 
         try {
