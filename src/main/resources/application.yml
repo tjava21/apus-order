@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
   servlet:
     context-path: /api
 spring:
@@ -32,5 +32,7 @@ app:
   lyra:
     company: ${LYRA_COMPANY:2222}
     url: ${LYRA_URL:https://apus-external.herokuapp.com/api/lyra/payment}
+  apus:
+    url: ${APUS_URL:https://apus.herokuapp.com/api}
   job:
     time: 1200000

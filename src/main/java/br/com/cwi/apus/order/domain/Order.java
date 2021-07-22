@@ -1,4 +1,4 @@
-package br.com.cwi.apus.order.domain.order;
+package br.com.cwi.apus.order.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static br.com.cwi.apus.order.domain.order.OrderStatus.CRIADO;
+import static br.com.cwi.apus.order.domain.OrderStatus.CRIADO;
 
 @AllArgsConstructor
 @NoArgsConstructor

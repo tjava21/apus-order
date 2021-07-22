@@ -1,4 +1,4 @@
-package br.com.cwi.apus.order.domain.order;
+package br.com.cwi.apus.order.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -15,12 +16,17 @@ import java.util.UUID;
 @Builder
 @Data
 @Entity
-public class Customer {
+public class Shipping {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    private String name;
-    private String email;
+    private BigDecimal total;
+    private int time;
+    private int volume;
+    private String zip;
+    private String address;
+    private String externalId;
+
 }

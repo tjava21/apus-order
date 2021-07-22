@@ -1,4 +1,4 @@
-package br.com.cwi.apus.order.domain.order;
+package br.com.cwi.apus.order.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,17 +16,13 @@ import java.util.UUID;
 @Builder
 @Data
 @Entity
-public class Shipping {
+public class Payment {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    private BigDecimal total;
-    private int time;
-    private int volume;
-    private String zip;
-    private String address;
+    private String card;
     private String externalId;
-
+    private BigDecimal total;
 }
