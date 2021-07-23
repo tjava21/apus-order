@@ -23,7 +23,7 @@ public class PaymentService {
 
         try {
 
-            String url = this.url + id + "/status";
+            String url = this.url + "/" + id + "/status";
 
             PaymentStatusResponse response = restTemplate
                     .getForObject(url, PaymentStatusResponse.class);
