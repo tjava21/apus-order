@@ -9,7 +9,7 @@ services:
     volumes:
       - apusdb_data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5433:5432
 
   pgadmin:
     image: dpage/pgadmin4
@@ -19,7 +19,7 @@ services:
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     ports:
-      - 9001:80
+      - 9002:80
 volumes:
   apusdb_data:
   pgadmin_data:

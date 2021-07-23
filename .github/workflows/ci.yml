@@ -16,7 +16,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Tests
-        run: ./mvnw -B clean package
+        run: ./mvnw -B clean package -DskipTests=true
       - name: Sonar Analysis
         run: ./mvnw -B sonar:sonar
         env:

@@ -8,12 +8,14 @@ import br.com.cwi.apus.order.validator.CreateOrderValidator;
 import br.com.cwi.apus.order.web.request.CreateOrderRequest;
 import br.com.cwi.apus.order.web.response.OrderResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @AllArgsConstructor
 @Service
 public class CreateOrderService {
@@ -37,6 +39,8 @@ public class CreateOrderService {
         repository.save(order);
 
         orderMailService.send(order.getId().toString(), order.getCustomer().getEmail());
+
+        log.info("Pedido criado com sucesso: {}", order.getId());
 
         return orderMapper.toOrderResponse(order);
     }

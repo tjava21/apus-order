@@ -4,6 +4,7 @@ server:
     context-path: /api
   error:
     include-message: always
+
 spring:
   mail:
     host: smtp.gmail.com
@@ -19,21 +20,32 @@ spring:
             enable: true
             required: true
           quitwait: false
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/apus
+    url: jdbc:postgresql://localhost:5433/apus
     username: apus
     password: apus
   jpa:
     hibernate:
       ddl-auto: update
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:user}
+    password: ${RABBITMQ_PASSWORD:bitnami}
+
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
 app:
   lyra:
     url: ${LYRA_URL:https://apus-external.herokuapp.com/api/lyra/payment}
   apus:
-    url: ${APUS_URL:https://apus.herokuapp.com/api}
+    url: ${APUS_URL:https://apus-ecommerce.herokuapp.com/api}
+#    url: ${APUS_URL:http://localhost:8081/api}
   job:
-    time: ${JOB_TIME:1200000}
+    # 1 hora
+    time: ${JOB_TIME:3600000}
